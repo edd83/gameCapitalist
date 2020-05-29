@@ -3,9 +3,9 @@
 
 ## Required
 
-Having nodejs & npm & docker isntalled on your machine.
+Having nodejs & npm & docker installed on your machine.
 
-Application have been tested in Mac OS Mojave 10.14.6
+Info: Application have been tested in Mac OS Mojave 10.14.6
 
 
 
