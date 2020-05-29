@@ -1,0 +1,56 @@
+{
+  "money": 1000,
+  "multiple": 1,
+  "businesses": [
+    {
+      "name": "pizzaTruck",
+      "level": 1,
+      "cost": 10000,
+      "profit": 1000,
+      "multipleCoef": 1.10,
+      "speed": 10000,
+      "active": false,
+      "managed": false
+    },
+    {
+      "name": "busTour",
+      "level": 1,
+      "cost": 20000,
+      "profit": 2000,
+      "multipleCoef": 1.10,
+      "speed": 30000,
+      "active": false,
+      "managed": false
+    },
+    {
+      "name": "asiaRestaurant",
+      "level": 1,
+      "cost": 100000,
+      "profit": 3000,
+      "multipleCoef": 1.15,
+      "speed": 50000,
+      "active": false,
+      "managed": false
+    },
+    {
+      "name": "realEstate",
+      "level": 1,
+      "cost": 500000,
+      "profit": 4000,
+      "multipleCoef": 1.20,
+      "speed": 100000,
+      "active": false,
+      "managed": false
+    },
+    {
+      "name": "gameCompany",
+      "level": 1,
+      "cost": 1000000,
+      "profit": 5000,
+      "multipleCoef": 1.25,
+      "speed": 150000,
+      "active": false,
+      "managed": false
+    }
+  ]
+}
