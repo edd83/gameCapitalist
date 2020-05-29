@@ -2,7 +2,7 @@
 
 
 
-## Pre-require
+## Pre require
 
 
 Having nodejs & npm & docker isntalled on your machine.
