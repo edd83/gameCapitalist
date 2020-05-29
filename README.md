@@ -1,9 +1,7 @@
 # Adventure Capitalist
 
 
-
-## Pre require
-
+## Required
 
 Having nodejs & npm & docker isntalled on your machine.
 
