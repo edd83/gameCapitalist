@@ -148,19 +148,30 @@ Invest more time in the front end, eslint, types...
 The point was to create an adventureCapitalist like but I have faced some issues
 
 PB: Docker compose to load my json with mongoimporton a sub folder (backend)
+
 SOL: Get a different approach, get it done into the code
 
+
 PB: Queries with MongoDB was not as easy as expect
+
 SOL: Read doc, fiound Mongoose, and very happy to use it, made things easier
 
+
 PB: EndPoint not reachable with postman
+
 SOL: Forgot / before v1
 
+
 PB: data not loaded at the beginning of the app in React
+
 SOL: Tried React Hooks but finally stayed on componentWillMount
 
+
 PB: Logic around disabling buttons
+
 SOL: Wrote the expression on whiteboard
 
+
 PB: ProgressBar timer animation
+
 SOL: Whiteboard again, breakdown the pb and made some test with setInterval
