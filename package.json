@@ -1,0 +1,25 @@
+{
+  "name": "gameclosure",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run backend",
+    "start:services": "concurrently --kill-others \"npm run backend\" \"npm run frontend\"",
+    "build": "concurrently \"npm run build:be\" \"npm run build:fe\"",
+    "backend": "cd backend && npm run start",
+    "frontend": "cd frontend && npm run start",
+    "build:fe": "cd frontend && npm run build",
+    "build:be": "cd backend && npm run build"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^5.2.0",
+    "nodemon": "^2.0.4"
+  },
+  "dependencies": {
+    "@types/mongodb": "^3.5.18",
+    "mongoose": "^5.9.16"
+  }
+}
