@@ -9,12 +9,16 @@ type PropsMainFrame = {
   money: number;
   img: string;
   business: Business;
+  visit: () => void;
+  visited: boolean;
 };
 
 type StateMainFrame = {
   wait: boolean;
   timer: number;
   percentage: number;
+  inter: ReturnType<typeof setInterval>[];
+  visited: boolean;
 };
 
 export class MainFrame extends React.Component<PropsMainFrame, StateMainFrame> {
@@ -23,19 +27,38 @@ export class MainFrame extends React.Component<PropsMainFrame, StateMainFrame> {
     this.state = {
       wait: true,
       timer: 0,
-      percentage: 100
+      percentage: 100,
+      inter: [],
+      visited: false
     };
+  }
+
+  componentDidMount(): void {
+    if (this.props.business && !this.props.visited) {
+      this.state.inter.map((inter): void => clearInterval(inter));
+      console.log('First time : ' + (Date.now() - this.props.business.time) + 'ms');
+      if (this.props.business.managed) {
+        setTimeout(() => {
+          this.props.func();
+          setInterval((): void => {
+            this.props.func();
+            this.startTimer();
+          }, this.props.business.speed);
+        }, Date.now() - this.props.business.time);
+      }
+      this.props.visit();
+    }
   }
 
   // manage
   async buyManager(name: string): Promise<void> {
     const res: AxiosResponse<any> = await axios.post(`http://localhost:3001/v1/manage`, {'name': name});
     if (res.status === 201) {
-      console.log(res);
       console.log(res.data);
       setInterval(() => {
         this.props.func();
         this.startTimer();
+        console.log(res.data);
       }, res.data);
     }
     this.props.func();
@@ -66,24 +89,23 @@ export class MainFrame extends React.Component<PropsMainFrame, StateMainFrame> {
     this.props.func();
   }
 
-  checkTimer(inter: ReturnType<typeof setInterval>): void {
-    if (this.state.timer <= 0) {
-      clearInterval(inter);
-      this.setState({percentage: 100});
-      this.props.func();
+  checkTimer(): void {
+    if (this.state.timer <= 0 || this.state.percentage <= 0) {
+      this.state.inter.map((elem) => clearInterval(elem));
+      this.setState({inter: [], percentage: 100});
     }
   }
 
   startTimer(): void {
     this.setState({timer: this.props.business.speed});
-    const inter = setInterval(() => {
+    this.state.inter.push(setInterval(() => {
       this.setState({timer: this.state.timer - 500, percentage: ((this.state.timer-500)*100)/this.props.business.speed});
-      this.checkTimer(inter);
-    }, 500);
+      this.checkTimer();
+    }, 499));
   }
 
 
-  render() {  
+  render() {
     return (
       <div className='mainFrame'>
         <img alt={this.props.business.name} src={this.props.img}/>

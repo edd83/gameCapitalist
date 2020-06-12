@@ -17,8 +17,9 @@ export async function buyManager(name: string, profit: number, cost: number, spe
 }
 
 export async function updateMoneyByBizName(name: string): Promise<void> {
-  const firstDoc = await Game.findOne({});
+  const firstDoc = await Game.findOneAndUpdate({'businesses.name': name}, {$set: {"businesses.$.time": Date.now()}}, {new: true});
   const businessJson = JSON.parse(JSON.stringify(firstDoc?.toObject().businesses.filter((elem: Business): boolean => elem.name === name)[0]));
+  console.log('Time updated to ' + businessJson.time);
   const updatedDoc = await Game.findOneAndUpdate({}, {$inc : {'money': businessJson.profit}}, { new: true });
   console.log('update money, it is now on ' + updatedDoc?.toObject().money);
 }

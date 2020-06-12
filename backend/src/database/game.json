@@ -1,5 +1,5 @@
 {
-  "money": 1000,
+  "money": 100000,
   "multiple": 1,
   "businesses": [
     {
@@ -8,9 +8,10 @@
       "cost": 10000,
       "profit": 1000,
       "multipleCoef": 1.10,
-      "speed": 10000,
+      "speed": 3000,
       "active": false,
-      "managed": false
+      "managed": false,
+      "time": 1
     },
     {
       "name": "busTour",
@@ -18,9 +19,10 @@
       "cost": 20000,
       "profit": 2000,
       "multipleCoef": 1.10,
-      "speed": 30000,
+      "speed": 5000,
       "active": false,
-      "managed": false
+      "managed": false,
+      "time": 1
     },
     {
       "name": "asiaRestaurant",
@@ -28,9 +30,10 @@
       "cost": 100000,
       "profit": 3000,
       "multipleCoef": 1.15,
-      "speed": 50000,
+      "speed": 7000,
       "active": false,
-      "managed": false
+      "managed": false,
+      "time": 1
     },
     {
       "name": "realEstate",
@@ -38,9 +41,10 @@
       "cost": 500000,
       "profit": 4000,
       "multipleCoef": 1.20,
-      "speed": 100000,
+      "speed": 10000,
       "active": false,
-      "managed": false
+      "managed": false,
+      "time": 1
     },
     {
       "name": "gameCompany",
@@ -48,9 +52,10 @@
       "cost": 1000000,
       "profit": 5000,
       "multipleCoef": 1.25,
-      "speed": 150000,
+      "speed": 12000,
       "active": false,
-      "managed": false
+      "managed": false,
+      "time": 1
     }
   ]
 }

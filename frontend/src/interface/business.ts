@@ -10,4 +10,5 @@ export interface Business {
   multipleCoef: number;
   speed: number;
   managed: boolean;
+  time: number;
 }

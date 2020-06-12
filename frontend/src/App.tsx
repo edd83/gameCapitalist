@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './App.css';
 import { MainFrame } from './Components/MainFrame';
 import pizzatruck from './Components/pizzaTruck.svg'
@@ -13,6 +13,7 @@ import { GameType } from './interface/gametype';
 type StateApp = {
   data: GameType;
   intervals: ReturnType<typeof setTimeout>[];
+  visited: boolean;
 }
 
 const img = [
@@ -28,36 +29,51 @@ export class App extends React.Component<{}, StateApp> {
     super(props);
     this.state = {
       data: {} as GameType,
-      intervals: []
+      intervals: [],
+      visited: false
     };
     this.update = this.update.bind(this);
+    this.visit = this.visit.bind(this);
   }
 
   async update(): Promise<void> {
-    const data = await axios.get(`http://localhost:3001/v1/update`);
-    this.setState({data: data.data});
+    const res = await axios.get(`http://localhost:3001/v1/update`);
+    this.setState({data: res.data});
   }
 
   async componentWillMount(): Promise<void> {
     this.update();
   }
 
-  async componentDidUpdate(): Promise<void> {
-    this.state.intervals.map((inter): void => clearInterval(inter));
-    this.state.data.businesses.map((biz: Business): void => {
-      if (biz.managed) {
-        const inter = setInterval(() => this.update(), biz.speed);
-        this.state.intervals.push(inter);
-      }
-    });
+  visit() {
+    this.setState({visited: true});
   }
+
+  // componentDidUpdate(): void {
+  //   if (this.state.data && this.state.data.businesses && !this.state.visited) {
+  //     this.state.intervals.map((inter): void => clearInterval(inter));
+  //     this.state.data.businesses.map((elem: Business): void => {
+  //       console.log('First time : ' + (Date.now() - elem.time) + 'ms');
+  //       if (elem.managed) {
+  //         setTimeout(() => {
+  //           this.update();
+  //           const inter = setInterval((): void => {
+  //             this.update();
+  //           }, elem.speed);
+  //           this.state.intervals.push(inter);
+  //         }, Date.now() - elem.time);
+  //       }
+  //     });
+  //     this.setState({visited: true});
+  //   }
+  // }
 
   render() {
     return (
       <div className="App">
         <h1>Cash: {this.state.data && this.state.data.money && this.state.data.money.toFixed(0)}$</h1>
         {this.state.data && this.state.data.businesses && this.state.data.businesses.map((elem: Business, i: number) => {
-          return <MainFrame key={i} money={this.state.data.money} img={img[i].src} func={this.update} business={elem}/>
+          return <MainFrame key={i} money={this.state.data.money} img={img[i].src} func={this.update} visit={this.visit} visited={this.state.visited} business={elem}/>
         })}
       </div>
     );

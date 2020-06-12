@@ -3,8 +3,8 @@ import fs from 'fs';
 
 export let Game: mongoose.Model<mongoose.Document, {}>;
 
-export async function populateData(): Promise<void> {
-  cleanDb();
+export async function addGamesCollection(): Promise<void> {
+  cleanGamesCollection();
 
   const gameJsonPromise = new Promise((resolve, reject) => {
     fs.readFile(__dirname + '/../../src/database/game.json', 'utf8', (err: NodeJS.ErrnoException | null, jsonString: string): void => {
@@ -25,7 +25,8 @@ export async function populateData(): Promise<void> {
     multipleCoef: Number,
     speed: Number,
     active: Boolean,
-    managed: Boolean
+    managed: Boolean,
+    time: Number
   });
   const gameSchema = new Schema({
     money: Number,
@@ -39,6 +40,16 @@ export async function populateData(): Promise<void> {
   await newGame.save();
 }
 
-export function cleanDb(): void {
-  mongoose.connection.dropCollection('games');
+export async function cleanGamesCollection(): Promise<void> {
+  const dropPromise = new Promise((resolve) => {
+    mongoose.connection.on('open', async (_) => {
+      await mongoose.connection.db.listCollections().toArray((_, names) => {
+          if (names.filter((elem) => elem.name === 'games').length) {
+            mongoose.connection.dropCollection('games');
+          }
+      });
+      resolve();
+    })
+  });
+  await dropPromise;
 }

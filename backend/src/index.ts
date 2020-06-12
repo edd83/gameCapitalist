@@ -1,9 +1,9 @@
 import { app } from './server';
-import { populateData } from './database/setupDb'
+import { addGamesCollection } from './database/setupDb'
 import Db from './database/connect';
 
-export const db = Db.connect();
+Db.connect();
+addGamesCollection();
 
 const port = process.env.PORT || 3001;
-populateData();
 app.listen(port, () => console.log(`API server started on ${port}`));

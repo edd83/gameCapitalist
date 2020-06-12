@@ -10,4 +10,5 @@ export interface Business {
   speed: number;
   active: boolean;
   managed: boolean;
+  time: number;
 }
