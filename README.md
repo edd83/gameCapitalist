@@ -130,12 +130,6 @@ Make sure all @types module are under dev dependencies and not production
 Use a SSR to make it simple to dev (Having a automatic reload everywhere)
 
 
-Better time management for update and managers when coming back on the UI
-
-
-ProgressBar visual bug fixed & working when come back to the app
-
-
 Use Generics types from Typescript
 
 

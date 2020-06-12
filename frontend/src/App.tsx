@@ -49,25 +49,6 @@ export class App extends React.Component<{}, StateApp> {
     this.setState({visited: true});
   }
 
-  // componentDidUpdate(): void {
-  //   if (this.state.data && this.state.data.businesses && !this.state.visited) {
-  //     this.state.intervals.map((inter): void => clearInterval(inter));
-  //     this.state.data.businesses.map((elem: Business): void => {
-  //       console.log('First time : ' + (Date.now() - elem.time) + 'ms');
-  //       if (elem.managed) {
-  //         setTimeout(() => {
-  //           this.update();
-  //           const inter = setInterval((): void => {
-  //             this.update();
-  //           }, elem.speed);
-  //           this.state.intervals.push(inter);
-  //         }, Date.now() - elem.time);
-  //       }
-  //     });
-  //     this.setState({visited: true});
-  //   }
-  // }
-
   render() {
     return (
       <div className="App">
