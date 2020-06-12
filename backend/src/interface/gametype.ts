@@ -1,5 +1,5 @@
-import { Business } from "./business";
-import { ObjectId } from "mongodb";
+import { ObjectId } from 'mongodb';
+import { Business } from './business';
 
 export interface GameType {
   _id: ObjectId;

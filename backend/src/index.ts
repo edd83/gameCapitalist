@@ -1,5 +1,5 @@
 import { app } from './server';
-import { addGamesCollection } from './database/setupDb'
+import { addGamesCollection } from './database/setupDb';
 import Db from './database/connect';
 
 Db.connect();

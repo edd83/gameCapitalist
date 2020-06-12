@@ -28,7 +28,7 @@
         "no-console": "off", // Need a proper logger
         "import/no-unresolved": "error",
         "sort-keys": ["error", "asc", {"caseSensitive": false}],
-        "require-atomic-updates": "error",
+        "require-atomic-updates": "off",
         "import/prefer-default-export": "off",
         "import/extensions": ["error", "never"],
         "no-else-return": "error",
